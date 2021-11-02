@@ -12,6 +12,15 @@ How to use:
 10. password: root
 11. install mysql workbench
 12. open mysql workbench and add mysql connection on local
-13. run on terminal- python initialDB.py
-14. wait 40 mins
-15. check if our schemas exist in mysql workbench
+
+in the python code we have 2 flags
+
+FLAG100 = 0 -> add all table (may take 40 mins)
+FLAG100 = 1 -> add only 100 first rows
+
+FLAGDEl = 0 -> for first run
+FLAGDEl = 1 -> delete the exisitin tables (for second run)
+
+14. run on terminal- python initialDB.py
+15. wait 40 mins
+16. check if our schemas exist in mysql workbench
