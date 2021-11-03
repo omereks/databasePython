@@ -6,7 +6,7 @@ import mysql.connector
 import pandas as pd
 
 FLAG100 = 1
-FLAGDEl = 0
+FLAGDEl = 1
 
 
 
@@ -57,10 +57,10 @@ for i,row in empdata.iterrows():
         p = p + 10
     food_id = row[0]
     food_description = row[2]
-    food_description = food_description.replace(",","")
     query = "INSERT INTO `nurti`.`food` (`food_id`, `description`) VALUES (%s, %s);"
     if type(food_description) is float and math.isnan(food_description):
         food_description = "empty"
+    food_description = food_description.replace(",", "")
     val = (food_id, food_description)
     mycursor.execute(query, val)
     if FLAG100 == 1 and i == 100:
