@@ -5,8 +5,8 @@ import math
 import mysql.connector
 import pandas as pd
 
-FLAG100 = 0
-FLAGDEl = 0
+FLAG100 = 1
+FLAGDEl = 1
 
 
 
@@ -57,6 +57,7 @@ for i,row in empdata.iterrows():
         p = p + 10
     food_id = row[0]
     food_description = row[2]
+    food_description = food_description.replace(",","")
     query = "INSERT INTO `nurti`.`food` (`food_id`, `description`) VALUES (%s, %s);"
     if type(food_description) is float and math.isnan(food_description):
         food_description = "empty"
@@ -179,3 +180,26 @@ arrTupleNutirient = [(1, 1, 1106, 1000), #A Male
 
 mycursor.executemany('INSERT INTO `nurti`.`recommended_values` (`ID`, `gender`, `nutrient_id`, `amount`) VALUES(%s, %s, %s, %s)', arrTupleNutirient)
 db.commit()
+
+
+#users
+print("create users table")
+mycursor.execute("CREATE TABLE `nurti`.`users` (" \
+                    "`id` INT NOT NULL," \
+                    "`gender` TINYINT NULL," \
+                    "PRIMARY KEY (`id`));")
+db.commit()
+print("finish create users")
+
+
+#users
+print("create recommended_values_per_users table")
+mycursor.execute("CREATE TABLE `nurti`.`recommended_values_per_users` (" \
+                    "`id` INT NOT NULL," \
+                    "`user_id` INT NULL," \
+                    "`nutrient_id` INT NULL," \
+                    "`amount` INT NULL," \
+                    "`recommended_values_per_userscol` INT NULL," \
+                    "PRIMARY KEY (`id`));")
+db.commit()
+print("finish create recommended_values_per_users")
