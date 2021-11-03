@@ -6,7 +6,7 @@ import mysql.connector
 import pandas as pd
 
 FLAG100 = 1
-FLAGDEl = 1
+FLAGDEl = 0
 
 
 
@@ -136,11 +136,11 @@ print("finish upload food_values")
 #food_eaten
 print("create food_eaten table")
 mycursor.execute("CREATE TABLE `nurti`.`food_eaten` (" \
-                    "`ID` INT NOT NULL," \
+                    "`id` INT NOT NULL," \
+                    "`user_id` INT NULL," \
                     "`food_id` VARCHAR(45) NULL," \
                     "`amount` INT NULL," \
-                    "`gender` TINYINT NULL," \
-                    "PRIMARY KEY (`ID`));")
+                    "PRIMARY KEY (`id`));")
 
 print("finish upload food_eaten")
 
